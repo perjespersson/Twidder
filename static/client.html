@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Twidder</title>
+        <link href="/static/css/client.css" type="text/css" rel="stylesheet">
+        <script src="/static/js/client.js" type="text/javascript"></script>
+
+        <script src="/static/js/moment.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script src="/static/js/utils.js"></script>
+        <script src="/static/js/charts.js"></script>
+
+
+        <!-- BOOTSTRAP -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+        <!-------------------------------------------------------------------------------------------->
+
+
+    <script type="text/view" id="welcomeview">
+            <div class="container" id="start_page" style="max-width:900px;">
+                <div class="row">
+
+                <div class="col-lg-7" id="col1" style="padding-left: 5px; padding-right:5px;">
+                    <div class="bg-white rounded shadow-sm" id="logo_container">
+                        <img src="/static/images/wimage.png" alt="Logo" id="start_img">
+                    </div>
+                </div>
+
+                    <div class="col-lg-5" id="col2" style="padding-left: 5px; padding-right:5px;">
+                        <div class="bg-white rounded shadow-sm" style="height:180px;">
+                            <form action="javascript:;" onsubmit="signin_form_request(this)" style="padding-top:30px;">
+                                <div class="text_input_div">
+                                    <label for="login_email">Email:</label>
+                                    <input type="email" class="login_field" name="email" id="login_email" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="login_password">Password:</label>
+                                <input type="password" pattern=".{8,}" class="login_field" name="password" id="login_password" required>
+                                </div>
+                                <input type="submit" value="Login" class="light_button">
+                            </form>
+                            <div style="clear:both" id="login_error"></div>
+                        </div>
+
+                        <div class="bg-white rounded shadow-sm" id="col2_2" style="height:410px;">
+                            <h3 style="text-align: center; padding-top: 10px; padding-bottom:5px; font-size:24px;"> Sign up here! </h3>
+                            <form action="javascript:;" onsubmit="signup_form_request(this)">
+                                <div class="text_input_div">
+                                <label for="signup_first_name">First name:</label>
+                                <input type="text" class="signup_field" name="First_name" id="signup_first_name" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="signup_family_name">Family name:</label>
+                                <input type="text" class="signup_field" name="Family_name" id="signup_family_name" required>
+                                </div>
+
+                                <div class="text_input_div">
+                                    <label for="signup_gender">Gender:</label>
+                                    <select name="gender" class="signup_field" id="signup_gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select><br><br>
+                                </div>
+
+                                <div class="text_input_div">
+                                <label for="signup_City">City:</label>
+                                <input type="text" class="signup_field" name="City" id="signup_City" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="signup_Country">Country:</label>
+                                <input type="text" class="signup_field" name="Country" id="signup_Country" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="signup_Email">Email:</label>
+                                <input type="email" class="signup_field" name="Email" id="signup_Email" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="signup_Password">Password:</label>
+                                <input type="password" pattern=".{8,}" class="signup_field" name="Password" id="signup_Password" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="signup_RepPassword">Repeat PSW:</label>
+                                <input type="password" pattern=".{8,}" class="signup_field" name="RepPassword" id="signup_RepPassword" required>
+                                </div>
+
+                                <input type="submit" value="Sign Up" class="dark_button">
+                            </form>
+                            <div style="clear:both" id="password_error"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    <script type="text/view" id="profileview">
+            <div class="container" id="login_page" style="max-width:900px; ">
+                <nav class="navbar navbar-expand-md navbar-white rounded bg-white rounded">
+                    <h3 id="logo" style="font-weight:600;">Twidder</h3>
+                    <button class="navbar-toggler custom-toggler" style="width:64px; margin-right:15px;" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse rounded" id="collapsibleNavbar">
+                        <ul class="navbar-nav" style="width:100%;">
+                            <li class="nav-item">
+                                <button class="tablinks" onclick="openPage(event, 'Home')" id="defaultOpen">Home</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="tablinks" onclick="openPage(event, 'Browse')">Browse</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="tablinks" onclick="openPage(event, 'Account')">Account</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="tablinks" onclick="openPage(event, 'Statistic')">Statistic</button>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="container" style="max-width:900px;">
+                <div class="content_view">
+                    <div id="Home" class="tabcontent">
+                        <div class="row">
+                            <br><br>
+
+                            <div class="col-lg-6 left-col">
+                                <div class=" bg-white rounded shadow-sm personal_content">
+                                    <div id = "Personal_information">
+                                        <h3 style="text-align:center"> Personal information </h3>
+                                        <p id="info_first_name"><b>First name: </b></p>
+                                        <p id="info_family_name"><b>Family name: </b></p>
+                                        <p id="info_gender"><b>Gender: </b></p>
+                                        <p id="info_city"><b>City: </b></p>
+                                        <p id="info_country"><b>Country: </b></p>
+                                        <p id="info_email"><b>Email: </b></p>
+                                    </div>
+                                    <div id = "submit_section">
+                                        <form class="message_submit" action="javascript:;" onsubmit="submit_message(this)">
+                                            <textarea rows = "10" cols="5" style="resize: none;" id = "submit_field"></textarea>
+
+                                            <input type="submit" value="Submit" class="dark_button">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 right-col">
+                                <div class=" bg-white rounded shadow-sm" style="height:528px;">
+                                    <h3> Messages </h3>
+                                    <div id="Personal_wall">
+                                    </div>
+                                    <button id="refresh_button" onclick="refresh_wall()" class="dark_button"> Refresh </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Browse" class="tabcontent">
+                        <div class="bg-white rounded shadow-sm search_ctn" style="height:110px;">
+                            <form id="search_user" action="javascript:;" onsubmit="search_user(this)">
+                                <input type="text" placeholder="Search name.." id="search_name">
+                                <input type="submit" value="Search" class="dark_button">
+                            </form>
+
+
+                            <div style="clear:both;" id="search_error"></div>
+                        </div>
+
+                        <div id = "browse_user">
+                            <div class="row">
+
+                                <div class="col-lg-6 left-col">
+                                    <div class=" bg-white rounded shadow-sm" style="height:528px;">
+                                        <div id = "Personal_information_b">
+                                            <h3 style="text-align:center"> Personal information </h3>
+                                            <p id="info_b_first_name"><b>First name: </b></p>
+                                            <p id="info_b_family_name"><b>Family name: </b></p>
+                                            <p id="info_b_gender"><b>Gender: </b></p>
+                                            <p id="info_b_city"><b>City: </b></p>
+                                            <p id="info_b_country"><b>Country: </b></p>
+                                            <p id="info_b_email"><b>Email: </b></p>
+                                        </div>
+                                        <div id ="submit_section_b">
+                                            <form class="message_submit" action="javascript:;" onsubmit="submit_message_b(this)">
+                                                <textarea rows = "10" cols="5" style="resize: none;" id = "submit_field_b"></textarea>
+                                                <input type="submit" value="Submit" class="dark_button">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 right-col">
+                                    <div class=" bg-white rounded shadow-sm" style="height:528px;">
+                                        <h3> Messages </h3>
+                                        <div id="Personal_wall_b"></div>
+                                        <button id="refresh_button_b" onclick="refresh_wall_email()" class="dark_button"> Refresh </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Account" class="tabcontent">
+
+                        <div class="row">
+                            <div class="col-lg-6 left-col">
+                            <div class=" bg-white rounded shadow-sm" style="height:220px;">
+                            <form action="javascript:;" onsubmit="change_pass(this)" style="padding-top:30px;">
+                                <div class="text_input_div">
+                                <label for="old_Password">Old PSW:</label>
+                                <input type="password" pattern=".{8,}" class="signup_field" name="Password" id="old_Password" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="new_Password">New PSW:</label>
+                                <input type="password" pattern=".{8,}" class="signup_field" name="Password" id="new_Password" required>
+                                </div>
+                                <div class="text_input_div">
+                                <label for="new_RepPassword">Repeat PSW: </label>
+                                <input type="password" pattern=".{8,}" class="signup_field" name="RepPassword" id="new_RepPassword" required>
+                                </div>
+                                <input type="submit" value="Change password" class="dark_button">
+                                <div id = "change_pass_message"> </div>
+                            </form>
+                            </div>
+                            </div>
+
+                            <div class="col-lg-6 right-col">
+                            <div class=" bg-white rounded shadow-sm" style="height:220px;">
+                                <form action="javascript:;" onsubmit="log_out()" style="padding-top: 89px;">
+                                    <input type="submit" value="log out" class="light_button" style="margin:0 auto;">
+                                    <div id = "log_out_message"> </div>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Statistic" class="tabcontent">
+                        <div class="bg-white rounded shadow-sm search_ctn">
+                            <h3>Statistic</h3>
+
+                        <div class="radio-toolbar">
+                                <input type="radio" id="firstCanvas" name="Statistic" checked onclick="changeStat('canvas_container1');">
+                                <label for="firstCanvas" class="left">Users Online</label>
+
+                                <input type="radio" id="secondCanvas" name="Statistic" onclick="changeStat('canvas_container2');">
+                                <label for="secondCanvas">Total Users</label>
+
+                                <input type="radio" id="thirdCanvas" name="Statistic" onclick="changeStat('canvas_container3');">
+                                <label for="thirdCanvas" class="right">Total Posts</label>
+                            </div>
+
+                            <div style="width:100%;" id="canvas_container1" class="canvaslink">
+                                <canvas id="canvas1"></canvas>
+                            </div>
+                            <div style="width:100%; display:none;" id="canvas_container2" class="canvaslink">
+                                <canvas id="canvas2"></canvas>
+                            </div>
+                            <div style="width:100%; display:none;" id="canvas_container3" class="canvaslink">
+                                <canvas id="canvas3"></canvas>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container bg-white rounded shadow-sm stat" style="max-width:900px;">
+              <div class="row">
+                <div class="col-md-4">
+                  <p style="text-align:center; margin:0; font-size: 30px; margin-top:5px;" id="stats_online">0</p>
+                  <p style="text-align:center; margin:0; margin-bottom:10px;">People Online</p>
+                </div>
+
+                <div class="col-md-4">
+                  <p style="text-align:center; margin:0; font-size: 30px; margin-top:5px;" id="stats_accounts">0</p>
+                  <p style="text-align:center; margin:0; margin-bottom:10px;">Accounts created</p>
+                </div>
+
+                <div class="col-md-4">
+                <p style="text-align:center; margin:0; font-size: 30px; margin-top:5px;" id="stats_posts">0</p>
+                <p style="text-align:center; margin:0; margin-bottom:10px;">Total posts</p>
+                </div>
+              </div>
+            </div>
+        </script>
+    </head>
+    <body style="background: #74cafe; font-family: 'Poppins', sans-serif;">
+        <div id="main_div"></div>
+    </body>
+</html>
